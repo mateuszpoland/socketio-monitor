@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  redis:
+    image: 'bitnami/redis:latest'
+    container_name: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  node-server:
+    container_name: node-server
+    build:
+      context: .
+      dockerfile: Docker/server/Dockerfile
+    volumes:
+    - './node-server/servers.js:/srv/app/servers.js:rw'
+
+  # może to być klient w pythonie, aby była biblioteka client dla danego języka
+  node-client:
+    container_name: node-client
+    build:
+      context: .
+      dockerfile: Docker/node-client/Dockerfile
+    volumes:
+    - './node-client/index.js:/usr/src/app/index.js:rw'
+    environment:
+      - NODE_SOCKET_BACKEND="node-server:8181"
+
+
+networks:
+  default:
+    external:
+      name: cpu-monitor

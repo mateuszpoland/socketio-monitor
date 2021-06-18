@@ -1,0 +1,18 @@
+{
+  "name": "perf-monitor-server",
+  "version": "1.0.0",
+  "description": "This is the backend server responsible for spawning workers to process frontend and backend clients requests.",
+  "main": "servers.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "farmhash": "^3.2.0",
+    "socket.io": "^2.3.0",
+    "socket.io-redis": "^5.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mateusz Kowalewski",
+  "license": "ISC"
+}
